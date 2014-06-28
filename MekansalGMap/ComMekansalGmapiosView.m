@@ -536,6 +536,27 @@ didChangeCameraPosition:(GMSCameraPosition *)position
 }
 
 - (void)mapView:(GMSMapView *)mapView
+idleAtCameraPosition:(GMSCameraPosition *)position
+{
+	if ([self.proxy _hasListeners:@"afterChangeCameraPosition"])
+	{
+		NSDictionary *target = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithDouble:position.target.latitude],@"latitude",
+                                [NSNumber numberWithDouble:position.target.longitude],@"longitude",
+                                nil];
+		NSDictionary *props = [NSDictionary dictionaryWithObjectsAndKeys:
+                               @"afterChangeCameraPosition",@"type",
+                               target,@"target",
+                               [NSNumber numberWithDouble:position.zoom],@"zoom",
+                               [NSNumber numberWithDouble:position.bearing],@"bearing",
+                               [NSNumber numberWithDouble:position.viewingAngle],@"viewAngle",
+                               [self showBBOX],@"bbox",
+                               nil];
+		[self.proxy fireEvent:@"afterChangeCameraPosition" withObject:props];
+	}
+}
+
+- (void)mapView:(GMSMapView *)mapView
 didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
 	if ([self.proxy _hasListeners:@"click"])
