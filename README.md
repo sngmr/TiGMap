@@ -7,4 +7,4 @@ Do not forget to change module.xcconfig file due to your Google Maps IOS SDK Loc
 
 Thanks to Daichi Sakai for original module.
 
-Originally forked from : https://github.com/alperdincer/TiGMap
+Originally forked from : https://github.com/eda92a/TiGMap
