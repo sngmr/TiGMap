@@ -517,70 +517,70 @@
 - (void)mapView:(GMSMapView *)mapView
 didChangeCameraPosition:(GMSCameraPosition *)position
 {
-	if ([self.proxy _hasListeners:@"changeCameraPosition"]) // listener name is too long?
+	if ([self.proxy _hasListeners:@"changecameraposition"]) // listener name is too long?
 	{
 		NSDictionary *target = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithDouble:position.target.latitude],@"latitude",
                                 [NSNumber numberWithDouble:position.target.longitude],@"longitude",
                                 nil];
 		NSDictionary *props = [NSDictionary dictionaryWithObjectsAndKeys:
-                               @"changeCameraPosition",@"type",
+                               @"changecameraposition",@"type",
                                target,@"target",
                                [NSNumber numberWithDouble:position.zoom],@"zoom",
                                [NSNumber numberWithDouble:position.bearing],@"bearing",
                                [NSNumber numberWithDouble:position.viewingAngle],@"viewAngle",
                                [self showBBOX],@"bbox",
                                nil];
-		[self.proxy fireEvent:@"changeCameraPosition" withObject:props];
+		[self.proxy fireEvent:@"changecameraposition" withObject:props];
 	}
 }
 
 - (void)mapView:(GMSMapView *)mapView
 idleAtCameraPosition:(GMSCameraPosition *)position
 {
-	if ([self.proxy _hasListeners:@"afterChangeCameraPosition"])
+	if ([self.proxy _hasListeners:@"idleatcameraposition"])
 	{
 		NSDictionary *target = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithDouble:position.target.latitude],@"latitude",
                                 [NSNumber numberWithDouble:position.target.longitude],@"longitude",
                                 nil];
 		NSDictionary *props = [NSDictionary dictionaryWithObjectsAndKeys:
-                               @"afterChangeCameraPosition",@"type",
+                               @"idleatcameraposition",@"type",
                                target,@"target",
                                [NSNumber numberWithDouble:position.zoom],@"zoom",
                                [NSNumber numberWithDouble:position.bearing],@"bearing",
                                [NSNumber numberWithDouble:position.viewingAngle],@"viewAngle",
                                [self showBBOX],@"bbox",
                                nil];
-		[self.proxy fireEvent:@"afterChangeCameraPosition" withObject:props];
+		[self.proxy fireEvent:@"idleatcameraposition" withObject:props];
 	}
 }
 
 - (void)mapView:(GMSMapView *)mapView
 didTapAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-	if ([self.proxy _hasListeners:@"click"])
+	if ([self.proxy _hasListeners:@"tapatcoordinate"])
 	{
 		NSDictionary * props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"click",@"type",
+                                @"tapatcoordinate",@"type",
                                 [NSNumber numberWithDouble:coordinate.latitude],@"latitude",
                                 [NSNumber numberWithDouble:coordinate.longitude],@"longitude",
                                 nil];
-		[self.proxy fireEvent:@"click" withObject:props];
+		[self.proxy fireEvent:@"tapatcoordinate" withObject:props];
 	}
 }
 
 - (void)mapView:(GMSMapView *)mapView
 didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
 {
-	if ([self.proxy _hasListeners:@"longpress"])
+	if ([self.proxy _hasListeners:@"longpressatcoordinate"])
 	{
 		NSDictionary * props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"longpress",@"type",
+                                @"longpressatcoordinate",@"type",
                                 [NSNumber numberWithDouble:coordinate.latitude],@"latitude",
                                 [NSNumber numberWithDouble:coordinate.longitude],@"longitude",
                                 nil];
-		[self.proxy fireEvent:@"longpress" withObject:props];
+		[self.proxy fireEvent:@"longpressatcoordinate" withObject:props];
 	}
 }
 -(void)recognizedLongPress:(UILongPressGestureRecognizer*)recognizer
@@ -592,12 +592,12 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker
 {
 	ComMekansalGmapiosAnnotationProxy *annProxy = [self proxyForMarker:marker];
-	if ([annProxy _hasListeners:@"click"])
+	if ([annProxy _hasListeners:@"tapmarker"])
 	{
 		NSDictionary * props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"click",@"type",
+                                @"tapmarker",@"type",
                                 nil];
-		[annProxy fireEvent:@"click" withObject:props];
+		[annProxy fireEvent:@"tapmarker" withObject:props];
 	}
 	//return YES;
 }
@@ -606,24 +606,24 @@ didLongPressAtCoordinate:(CLLocationCoordinate2D)coordinate
 didTapInfoWindowOfMarker:(GMSMarker *)marker
 {
 	ComMekansalGmapiosAnnotationProxy *annProxy = [self proxyForMarker:marker];
-	if ([annProxy _hasListeners:@"infoWindowClick"])
+	if ([annProxy _hasListeners:@"tapinfowindow"])
 	{
 		NSDictionary * props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"infoWindowClick",@"type",
+                                @"tapinfowindow",@"type",
                                 nil];
-		[annProxy fireEvent:@"infoWindowClick" withObject:props];
+		[annProxy fireEvent:@"tapinfowindow" withObject:props];
 	}
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapOverlay:(GMSOverlay *)overlay
 {
-    if ([self.proxy _hasListeners:@"overlayClick"])
+    if ([self.proxy _hasListeners:@"tapoverlay"])
     {
 		NSDictionary * props = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"overlayClick",@"type",
+                                @"tapoverlay",@"type",
                                 overlay.title, @"overlayTitle",
                                 nil];
-        [self.proxy fireEvent:@"overlayClick" withObject:props];
+        [self.proxy fireEvent:@"tapoverlay" withObject:props];
     }
 }
 
