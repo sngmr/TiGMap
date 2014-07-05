@@ -511,6 +511,14 @@
 	}
 }
 
+-(void)clear:(id)arg
+{
+    ENSURE_UI_THREAD(clear, arg)
+    {
+        self.map.clear;
+    }
+}
+
 
 #pragma mark Delegates
 

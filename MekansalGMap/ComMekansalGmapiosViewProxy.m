@@ -231,4 +231,14 @@
 	}
 }
 
+-(void)clear:(id)arg
+{
+    ENSURE_UI_THREAD(clear, arg);
+    {
+		TiThreadPerformOnMainThread(^{
+            [(ComMekansalGmapiosView*)[self view] clear:arg];
+		}, NO);
+    }
+}
+
 @end

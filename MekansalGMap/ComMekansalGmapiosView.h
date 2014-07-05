@@ -42,5 +42,6 @@
 -(void)removePolyline:(id)args;
 -(void)addPolygon:(id)args;
 -(void)removePolygon:(id)args;
+-(void)clear:(id)args;
 
 @end
