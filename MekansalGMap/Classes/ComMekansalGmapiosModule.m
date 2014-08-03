@@ -101,6 +101,12 @@ MAKE_SYSTEM_PROP(NOMAP_TYPE,kGMSTypeNone); //Altlık haritaları kapatıyoruz
 	[GMSServices provideAPIKey:[TiUtils stringValue:value]];
 }
 
+-(id)getOpenSourceLicenseInfo:(id)value
+{
+    NSString *str = [GMSServices openSourceLicenseInfo];
+    return str;
+}
+
 -(id)example:(id)args
 {
 	// example method
